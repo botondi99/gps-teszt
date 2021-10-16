@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <h1>Longitude: <span id="long"></span></h1>
+    <h1>Latitude: <span id="lat"></span></h1>
+    <button
+          type="button"
+          class="btn btn-outline-success btn-lg m-2"
+          onclick="start()"
+        >
+          START</button
+        ><br />
+
+    <script>
+      // let name = "Nathan";
+      let lat="NaN";
+      let long="NaN";
+      const start = () => {
+        setInterval(function(){
+          navigator.geolocation.getCurrentPosition(
+            position => {
+            console.log(position.coords.latitude);
+            console.log(position.coords.longitude);
+            // client.publish('boti_gps', position.coords.latitude)
+            long = position.coords.longitude;
+            lat = position.coords.latitude;
+            document.getElementById("lat").innerHTML = lat;
+            document.getElementById("long").innerHTML = long;
+
+            // client.on('connect', function () {
+            //   client.subscribe('boti_gps', function (err) {
+            //     if (!err) {
+            //       client.publish('presence', position.coords.latitude)
+            //     }
+            //   })
+            // })
+            },
+            error => {
+              console.log(error.message);
+            }
+          )
+        }, 1500);          
+       
+      };
+        
+
+
+
+
+
+
+      // navigator.geolocation.getCurrentPosition(
+      //       position => {
+      //       console.log(position.coords.latitude);
+      //       console.log(position.coords.longitude);
+      //       let name=position.coords.latitude;
+      //       document.getElementById("name").innerHTML = name;;
+      //       // client.publish('boti_gps', position.coords.latitude)
+
+      //       // client.on('connect', function () {
+      //       //   client.subscribe('boti_gps', function (err) {
+      //       //     if (!err) {
+      //       //       client.publish('boti_gps', position.coords.latitude)
+      //       //     }
+      //       //   })
+      //       // })
+      //       },
+      //       error => {
+      //         console.log(error.message);
+      //       }
+      //     ) 
+
+
+
+
+
+          
+        //  setInterval(function(){
+        //   navigator.geolocation.getCurrentPosition(
+        //     position => {
+        //     console.log(position.coords.latitude);
+        //     console.log(position.coords.longitude);
+        //     // client.publish('boti_gps', position.coords.latitude)
+
+        //     client.on('connect', function () {
+        //       client.subscribe('boti_gps', function (err) {
+        //         if (!err) {
+        //           client.publish('presence', position.coords.latitude)
+        //         }
+        //       })
+        //     })
+        //     },
+        //     error => {
+        //       console.log(error.message);
+        //     }
+        //   )          
+        // }, 1500);
+
+      
+    </script>
+    
+
+      
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+      onload="window.$ = window.jQuery = module.exports;"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      
+
+      const reset = () => {
+        sendIpcMsg({ cmd: "reset" });
+      };
+
+    </script>
+  </body>
+</html>
